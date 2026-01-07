@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:Wellness_Wizards_App"
+       x:Class="Wellness_Wizards_App.AdminShell"
+       Shell.TabBarBackgroundColor="#F0F0F0" >
+
+
+    <TabBar>
+
+        <Tab Title="About" Icon="home_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:AboutPage}" />
+        </Tab>
+
+        <Tab Title="Cards" Icon="cards_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:CardsPage}" />
+        </Tab>
+    </TabBar>
+</Shell>

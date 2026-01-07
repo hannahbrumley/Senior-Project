@@ -1,0 +1,91 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wellness_Wizards_App.AboutPage"
+             xmlns:viewModels="clr-namespace:Wellness_Wizards_App.ViewModels"
+             BackgroundColor="{StaticResource AppAccentMain}">
+
+    <ContentPage.BindingContext>
+        <viewModels:AdminLoginViewModel/>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="0">
+            <!-- Top Black Bar -->
+            <Frame BackgroundColor="Black" Padding="10" CornerRadius="0" HeightRequest="75" BorderColor="Black" HasShadow="True">
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="gold_logo.png" Grid.Column="0" HeightRequest="50" WidthRequest="50" Aspect="AspectFit" VerticalOptions="Center"/>
+                    <Label Text="About" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" TextColor="White" FontSize="28" FontAttributes="Bold" FontFamily="Klavika-Bold"/>
+                    <ImageButton Source="flipped_dot_icon.png" Grid.Column="2" HeightRequest="30" WidthRequest="50" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="Center" Clicked="OnAdminMenuClicked"/>
+                </Grid>
+            </Frame>
+
+            <!-- Scrollable Content -->
+            <VerticalStackLayout Spacing="20" Padding="30">
+                <!-- White Square 1 -->
+                <Frame BackgroundColor="White" Padding="20" CornerRadius="10" HasShadow="True">
+                    <StackLayout>
+                        <Image Source="picture1.png"/>
+                        <Label FontSize="30">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="#We" FontFamily="Klavika-Regular"/>
+                                    <Span Text="Support" FontFamily="Klavika-Bold" TextColor="{StaticResource AppAccentMain}"/>
+                                    <Span Text="U" FontFamily="Klavika-Regular"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label HeightRequest="10"/>
+                        <Label FontFamily="Klavika-Regular" FontSize="20" LineHeight="1.3"
+                               Text="Suspenders4Hope, a program developed at Wichita State University, is a comprehensive, strategic approach to promoting mental health wellness, preventing suicide, substance abuse, and sexual violence. We believe that hope, recovery, and resilience are possible with the right support." />
+                        <Label HeightRequest="10"/>
+                        <Label FontFamily="Klavika-Regular" FontSize="20" LineHeight="1.3"
+                               Text="Showcasing real stories of hope, help-seeking and resiliency, Suspenders4Hope aims to increase connections and end the stigma surrounding mental health. Suspenders4Hope is the symbol for mental health awareness. It represents community support and connection." />
+                    </StackLayout>
+                </Frame>
+
+                <!-- White Square 2 -->
+                <Frame BackgroundColor="White" Padding="20" CornerRadius="10" HasShadow="True">
+                    <StackLayout>
+                        <Label Text="Mental Wellness Cards" FontFamily="Klavika-Bold" FontSize="30" LineHeight="1.3" />
+                        <Label HeightRequest="10"/>
+                        <Label FontFamily="Klavika-Regular" FontSize="20" LineHeight="1.3"
+                               Text="Mental Wellness cards help start discussions around mental health with an easy-to-use curriculum. The activities included can be used in the classroom, workplace, or individually to promote personal wellness." />
+                        <Label HeightRequest="10"/>
+                        <Label FontFamily="Klavika-Regular" FontSize="20" LineHeight="1.3"
+                                Text="Mental Wellness cards are designed to give leaders an easy-to-use wellness curriculum. Each deck includes 30+ cards to lead a team or individual in 5-10 minute activities that increase peer connections and overall well-being." />
+                        <Label HeightRequest="10"/>
+                        <Label FontFamily="Klavika-Regular" FontSize="20" LineHeight="1.3"
+                               Text="This app has three decks that can be used in the workplace, classroom, or by students and all can be accessed in this app!" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- White Square 3 -->
+                <Frame BackgroundColor="White" Padding="20" CornerRadius="10" HasShadow="True">
+                    <StackLayout>
+                        <Label Text="Get Started Now" FontFamily="Klavika-Bold" FontSize="30" />
+                        <Label HeightRequest="10"/>
+                        <Label FontFamily="Klavika-Regular" FontSize="20" LineHeight="1.3"
+                               Text="Click on the Cards button located on the bottom navigation bar to choose which cards fit your situation and get started." />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Add more white squares as needed below this line -->
+
+                <!-- Example of an additional white square -->
+                <!-- <Frame BackgroundColor="White" Padding="20" CornerRadius="10" HasShadow="True">
+                    <StackLayout>
+                        <Label Text="Additional Section Title" FontFamily="Klavika-Bold" FontSize="30" />
+                        <Label FontFamily="Klavika-Regular" FontSize="20"
+                               Text="This is an example of additional content that you might want to add to your About page. Adjust the text and content as needed." />
+                    </StackLayout>
+                </Frame> -->
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

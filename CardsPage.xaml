@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Wellness_Wizards_App.ViewModels"
+             x:Class="Wellness_Wizards_App.CardsPage"
+             xmlns:model="clr-namespace:Wellness_Wizards_App.Models"
+             Padding="{OnPlatform iOS='0,0,0,0', Android='0,0,0,0'}"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.BindingContext>
+        <local:CardsViewModel1 />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="0" Margin="0">
+        <Frame BackgroundColor="Black" Padding="10" CornerRadius="0" HasShadow="True" HeightRequest="75" BorderColor="Black">
+            <Grid ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- For the image -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Adjusted for the label -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Image to the left -->
+                <Image Source="gold_logo.png" Grid.Column="0" HeightRequest="50" WidthRequest="50" Aspect="AspectFit" VerticalOptions="Center"/>
+
+                <!-- Label next to the image -->
+                <Label Text="Cards" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" TextColor="White" FontSize="28" FontAttributes="Bold" FontFamily="Klavika-Bold"/>
+                
+                <!-- Button to create new deck -->
+                <!--<Button Text="Create new deck" Grid.Column="2" Clicked="OnAddDeck" BackgroundColor="Gold" TextColor="Black" FontFamily="Klavika-Light" HeightRequest="40" WidthRequest="100" HorizontalOptions="End"/> -->
+            </Grid>
+        </Frame>
+        <CollectionView x:Name="DecksCollectionView" ItemsSource="{Binding Decks}" Margin="0,20,0,0">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="10" BorderColor="LightGray" HasShadow="True" BackgroundColor="{StaticResource AppAccentMain}" Padding="30" Margin="10" HeightRequest="125" WidthRequest="350">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Text="{Binding Name}" 
+                                   FontSize="35" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center"
+                                   FontFamily="Klavika-Bold"
+                                   Grid.Row="0"/>
+
+                            <BoxView Grid.Row="1" HorizontalOptions="Fill" VerticalOptions="End" BackgroundColor="{StaticResource AppAccentMain}"/>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDeckSelected" CommandParameter="{Binding .}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

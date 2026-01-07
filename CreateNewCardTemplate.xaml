@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Wellness_Wizards_App.ViewModels"
+             x:Class="Wellness_Wizards_App.CreateNewCardTemplate"
+             Padding="0"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.BindingContext>
+        <local:CardsViewModel />
+    </ContentPage.BindingContext>
+
+
+    <StackLayout VerticalOptions="FillAndExpand" Spacing="0" Padding="0">
+        <Frame BackgroundColor="Black" Padding="10" CornerRadius="0" HasShadow="True" VerticalOptions="Start" HeightRequest="75" BorderColor="Black">
+            <Grid ColumnSpacing="10">
+                <!-- Define columns for the image, label, and button -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- For the image -->
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Adjusted for the label -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Adjusted for spacing and button -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Image to the left of "Cards" -->
+                <Image Source="gold_logo.png" Grid.Column="0" HeightRequest="50" WidthRequest="50" Aspect="AspectFit" VerticalOptions="Center"/>
+
+                <!-- Label "Cards" -->
+                <Label Text="Cards" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" TextColor="White" FontSize="28" FontAttributes="Bold" FontFamily="Lato"/>
+
+            </Grid>
+        </Frame>
+
+
+        <Label Text="Suggest card content to be reviewed by Suspenders4Hope" Margin="10" FontSize="13" HorizontalTextAlignment="Center"></Label>
+
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Frame Padding="10" Margin="5,50,5,0" CornerRadius="10" BorderColor="LightGray" WidthRequest="350" HeightRequest="525" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.3,0.9,0.6" BackgroundColor="White">
+                <Grid Padding="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- For Exercise Number -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- For Card Title -->
+                        <RowDefinition Height="*"/>
+                        <!-- For Card Body -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- For Yellow Rectangle -->
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <!-- For Exercise Number -->
+                        <ColumnDefinition Width="Auto"/>
+                        <!-- For Image -->
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <VerticalStackLayout>
+                       
+                        <HorizontalStackLayout HorizontalOptions="End">
+                           
+                            <Label x:Name="CardNumber" FontSize="Small" Grid.Row="0" Grid.Column="0" Margin="0,0,5,0" HorizontalOptions="End" VerticalOptions="Center" FontFamily="klavika"/>
+
+                            <!-- Image next to the Exercise Number -->
+                            <Image Source="white_logo.png" Grid.Row="0" Grid.Column="1" HeightRequest="20" WidthRequest="20" Margin="0,0,5,0" VerticalOptions="Center"/>
+
+                            <!-- Card Title Label -->
+                            <Label x:Name="CardTitle" FontAttributes="Bold" FontSize="20" HorizontalOptions="Start" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="klavika"/>
+
+                            <!-- Card Body Label -->
+                            <Label x:Name="CardBody" FontSize="17" HorizontalOptions="Start" HorizontalTextAlignment="Start" Grid.Row="2" Grid.ColumnSpan="2" FontFamily="klavika"/>
+                        </HorizontalStackLayout>
+
+                        <Editor x:Name="Title" Placeholder="Title" HeightRequest="75"/>
+                        <Editor x:Name="Body" Placeholder="Body" HeightRequest="325" />
+
+                        <!-- Adds card to deck to be published to new card -->
+                        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                            <Button Text="Cancel" Clicked="GoBackButton" CornerRadius="10" BackgroundColor="{StaticResource AppAccentMain}" AbsoluteLayout.LayoutFlags="None" AbsoluteLayout.LayoutBounds="305,565,-1,-1" TextColor="Black" FontFamily="klavika" WidthRequest="125"/>
+                            <Button Text="Send" Clicked="OnAddToDeck" CornerRadius="10" BackgroundColor="{StaticResource AppAccentMain}" AbsoluteLayout.LayoutFlags="None" AbsoluteLayout.LayoutBounds="305,565,-1,-1" TextColor="Black" FontFamily="klavika" WidthRequest="125"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+
+
+
+                    <BoxView HeightRequest="15" BackgroundColor="{StaticResource AppAccentMain}" Grid.Row="3" Margin="0,5,0,0" Grid.ColumnSpan="2"/>
+                </Grid>
+            </Frame>
+
+
+        </AbsoluteLayout>
+
+
+    </StackLayout>
+</ContentPage>

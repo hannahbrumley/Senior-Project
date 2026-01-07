@@ -1,0 +1,167 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wellness_Wizards_App.CardsDetailPage"
+             xmlns:viewModels="clr-namespace:Wellness_Wizards_App.ViewModels"
+             Padding="0"
+             Shell.NavBarIsVisible="False">
+
+
+    <StackLayout VerticalOptions="FillAndExpand" Spacing="0" Padding="0">
+        <Frame BackgroundColor="Black" Padding="10" CornerRadius="0" HasShadow="True" VerticalOptions="Start" HeightRequest="75" BorderColor="Black">
+            <Grid ColumnSpacing="10">
+                <!-- Define columns for the image, label, and button -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- For the image -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Adjusted for the label -->
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Adjusted for spacing and button -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Image to the left of "Cards" -->
+                <ImageButton Source="gold_logo.png" Clicked="ImageButton_Clicked" Grid.Column="0" HeightRequest="50" WidthRequest="50" Aspect="AspectFit" VerticalOptions="Center"/>
+
+                <!-- Label "Cards" -->
+                <Label x:Name="DeckNameLabel" Text="{Binding DeckName}" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" TextColor="White" FontSize="28" FontAttributes="Bold" FontFamily="Klavika-Bold"/>
+
+                <!-- Button "Create new card" -->
+                <ImageButton
+                    Grid.Column="2" 
+                    Clicked="OnAddCard" 
+                    Source="add_icon.png"
+                    CornerRadius="10"
+                    HeightRequest="20" 
+                    WidthRequest="30" 
+                    HorizontalOptions="End">
+                </ImageButton>
+            </Grid>
+        </Frame>
+
+
+        <Grid x:Name="PickerGrid" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="350" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <!-- Using all available space -->
+                <ColumnDefinition Width="Auto"/>
+                <!-- For additional elements like the image -->
+            </Grid.ColumnDefinitions>
+
+            
+                    <Picker 
+                        x:Name="CardPicker" 
+                        Title="Select a card"
+                        Grid.Column="0"
+                        BackgroundColor="#F0F0F0"
+                        TextColor="#333333"
+                        FontFamily="Klavika-Light"
+                        SelectedIndexChanged="OnCardSelected">
+                    </Picker>
+              
+            <!-- Image positioned relative to the Picker, without overlapping the border -->
+            <Image Source="down_arrow.png"
+                   Grid.Column="0"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center"
+                   BackgroundColor="Transparent"
+                   WidthRequest="25"
+                   HeightRequest="25"
+                   Margin="0,-5,10,0"/>
+        </Grid>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Frame Padding="10" Margin="5,50,5,0" CornerRadius="10" BorderColor="LightGray" WidthRequest="350" HeightRequest="525" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.3,0.9,0.6" BackgroundColor="White">
+                <Grid Padding="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- For Exercise Number -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- For Card Title -->
+                        <RowDefinition Height="*"/>
+                        <!-- For Scrollable Card Body -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- For Yellow Rectangle -->
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <!-- For Image -->
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Exercise Number -->
+                    <Label x:Name="CardNumber" Text="{Binding CardNumberText}" FontSize="Small" Grid.Row="0" Grid.Column="0" Margin="0,0,5,0" HorizontalOptions="End" VerticalOptions="Center" FontFamily="Klavika-Light"/>
+
+                    <!-- Image next to the Exercise Number -->
+                    <Image Source="white_logo.png" Grid.Row="0" Grid.Column="1" HeightRequest="20" WidthRequest="20" Margin="0,0,5,0" VerticalOptions="Center"/>
+
+                    <!-- Card Title Label -->
+                    <Label x:Name="CardTitle" Text ="{Binding CurrentCard.Title}" FontAttributes="Bold" FontSize="20" HorizontalOptions="Start" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Klavika-Bold"/>
+
+                    <!-- Scrollable Card Body -->
+                    <ScrollView Grid.Row="2" Grid.ColumnSpan="2">
+                        <!-- <Label x:Name="CardBody" Text="{Binding CurrentCard.Body}" TextType="Html" VerticalOptions="Start" FontSize="17" FontFamily="Klavika-Regular">
+                             <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding CurrentCard.BodyPart1}" />
+                                    <Span Text="{Binding CurrentCard.BoldPart1}" FontAttributes="Bold" />
+                                    <Span Text="{Binding CurrentCard.BodyPart2}" />
+                                    <Span Text="{Binding CurrentCard.BoldPart2}" FontAttributes="Bold" />
+                                    <Span Text="{Binding CurrentCard.BodyPart3}" />
+                                    <Span Text="{Binding CurrentCard.ItalicPart}" FontAttributes="Italic" />
+                                    <Span Text="{Binding CurrentCard.BodyPart4}" />
+                                    <Span Text="{Binding CurrentCard.URlLink}" TextColor="Blue" TextDecorations="Underline">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.NavigateCommand}" 
+                                            CommandParameter="{Binding CurrentCard.URlLink}"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                    <Span Text="{Binding CurrentCard.BodyPart5}" />
+
+                                </FormattedString>
+                            </Label.FormattedText> 
+                        </Label> -->
+                        <WebView x:Name="cardBodyWebView" Source="{Binding WebViewSource}"/>
+                    </ScrollView>
+
+                    <!-- Yellow Rectangle at the bottom -->
+                    <BoxView HeightRequest="15" BackgroundColor="{StaticResource AppAccentMain}" Grid.Row="3" Margin="0,5,0,0" Grid.ColumnSpan="2"/>
+                </Grid>
+            </Frame>
+            <!-- Previous Button -->
+            <ImageButton x:Name="PreviousButton"
+             Source="left_arrow.png"
+             Clicked="OnPreviousClicked"
+             BackgroundColor="{StaticResource AppAccentMain}"
+             CornerRadius="10"
+             Padding="0"
+             HeightRequest="40"
+             WidthRequest="55"
+             IsVisible="{Binding PreviousButtonIsVisible}"
+             Aspect="AspectFit"
+             AbsoluteLayout.LayoutBounds="0.1, 0.9, 27, -70"
+             AbsoluteLayout.LayoutFlags="PositionProportional">
+            </ImageButton>
+
+            <!-- Next Button positioned on the right -->
+            <ImageButton x:Name="NextButton"
+             Source="right_arrow.png"
+             Clicked="OnNextClicked"
+             BackgroundColor="{StaticResource AppAccentMain}"
+             CornerRadius="10"
+             Padding="0"
+             HeightRequest="40"
+             WidthRequest="55"
+             IsVisible="{Binding NextButtonIsVisible}"
+             Aspect="AspectFit"
+             AbsoluteLayout.LayoutBounds="0.9, 0.9, 27, -70"
+             AbsoluteLayout.LayoutFlags="PositionProportional">
+            </ImageButton>
+        </AbsoluteLayout>
+
+
+    </StackLayout>
+
+
+
+</ContentPage>

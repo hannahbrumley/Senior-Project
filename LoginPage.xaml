@@ -1,0 +1,45 @@
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             xmlns:viewModels="clr-namespace:Wellness_Wizards_App.ViewModels"
+             x:Class="Wellness_Wizards_App.LoginPage"
+             Title="Login"
+             BackgroundColor="#80000000">
+
+    <mopups:PopupPage.BindingContext>
+        <viewModels:AdminLoginViewModel/>
+    </mopups:PopupPage.BindingContext>
+    
+    <ScrollView VerticalOptions="Center" HorizontalOptions="Center">
+        <Border 
+            HeightRequest="250" WidthRequest="320"
+            BackgroundColor="White"
+            Stroke="White"
+            StrokeThickness="0"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            StrokeShape="RoundRectangle 10,10,10,10">
+            
+            <VerticalStackLayout Spacing="30">
+                <Border HeightRequest="75"
+                        VerticalOptions="Start"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="Black"
+                        Stroke="Black">
+                    <Label Text="Administrator Login" TextColor="White" FontSize="28" FontAttributes="Bold" FontFamily="Klavika-Bold" 
+                               HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Border>
+
+                <Entry x:Name="CodeEntry" Placeholder="{Binding EntryPlaceHolder}" Text="{Binding AdminPassword}" FontFamily="Klavika-Regular" FontSize="14"  PlaceholderColor="Gray" MaxLength="75" ReturnCommand="{Binding OnCodeButtonCommand}"
+                       ClearButtonVisibility="WhileEditing" BackgroundColor="White" TextColor="Black" 
+                       HorizontalTextAlignment="Center" HorizontalOptions="Fill" IsPassword="True" IsEnabled="{Binding IsFieldFree}"/>
+
+                <Button x:Name="CodeButton" Text="Login" FontFamily="Klavika-Regular" FontSize="20" Padding="0"
+                        BackgroundColor="{StaticResource AppAccentMain}" TextColor="Black" 
+                        HeightRequest="45" WidthRequest="200" CornerRadius="10" 
+                        Pressed="OnCodeButtonPressed" Released="OnCodeButtonReleased" Command="{Binding OnCodeButtonCommand}">
+                </Button>
+            </VerticalStackLayout>
+        </Border>
+    </ScrollView>
+</mopups:PopupPage>
